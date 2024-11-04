@@ -8,6 +8,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Theme from "./Theme";
 import MobileNav from "./MobileNav";
+import GlobalSearch from "../search/GlobalSearch";
 
 const Navar = () => {
   return (
@@ -23,7 +24,7 @@ const Navar = () => {
           Dev <span className="text-primary-500">Overflow</span>
         </p>
       </Link>
-      GlobalSearch
+      <GlobalSearch />
       <div className="flex-between gap-5">
         <Theme />
         <SignedIn>
@@ -39,7 +40,7 @@ const Navar = () => {
             }}
           />
         </SignedIn>
-        {/* <MobileNav /> */}
+        <MobileNav />
       </div>
     </nav>
   );
