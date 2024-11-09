@@ -28,11 +28,11 @@ const hotQuestions = [
 ];
 
 const popularTags = [
-  { _id: 1, name: "javaScript", totalQuestions: 5 },
-  { _id: 2, name: "react", totalQuestions: 8 },
-  { _id: 3, name: "nextjs", totalQuestions: 7 },
-  { _id: 4, name: "vue", totalQuestions: 3 },
-  { _id: 5, name: "redux", totalQuestions: 2 },
+  { _id: "1", name: "javaScript", totalQuestions: 5 },
+  { _id: "2", name: "react", totalQuestions: 8 },
+  { _id: "3", name: "nextjs", totalQuestions: 7 },
+  { _id: "4", name: "vue", totalQuestions: 3 },
+  { _id: "5", name: "redux", totalQuestions: 2 },
 ];
 
 const RightSideBar = () => {
