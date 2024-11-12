@@ -47,6 +47,8 @@ export default function RootLayout({
               footerActionLink: "primary-text-gradient hover:text-primary-500",
             },
           }}
+          signInFallbackRedirectUrl="/"
+          signUpFallbackRedirectUrl="/"
         >
           <ThemeProvider>{children}</ThemeProvider>
         </ClerkProvider>
