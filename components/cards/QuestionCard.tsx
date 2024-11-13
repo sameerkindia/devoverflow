@@ -28,6 +28,9 @@ const QuestionCard = ({
   answers,
   createdAt,
 }: Props) => {
+  console.log(createdAt);
+  console.log(answers);
+
   return (
     <div className="card-wrapper p-9 sm:px-11 rounded-[10px]">
       <div className="flex flex-col-reverse items-start justify-between gap-5 sm:flex-row">
