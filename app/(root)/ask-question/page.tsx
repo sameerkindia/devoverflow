@@ -17,13 +17,22 @@ const page = async () => {
 
   const mongoUser = await getUserById({ userId });
 
-  // console.log(mongoUser);
+  console.log("mongo user ", mongoUser);
+
+  if (!mongoUser) {
+    return (
+      <div>
+        <h1 className="h1-bold text-dark100_light900">Ask a Question</h1>
+        <div className="mt-9">No User Found</div>
+      </div>
+    );
+  }
 
   return (
     <div>
       <h1 className="h1-bold text-dark100_light900">Ask a Question</h1>
       <div className="mt-9">
-        <Question mongoUserId={JSON.stringify(mongoUser._id)} />
+        <Question mongoUserId={JSON.stringify(mongoUser?._id)} />
       </div>
     </div>
   );

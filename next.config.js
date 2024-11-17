@@ -4,8 +4,9 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
-  mdxRs: true,
-  serverComponentsExternalPackages: ["mongooes"],
 };
 
 module.exports = nextConfig;
+
+// mdxRs: true,
+// serverComponentsExternalPackages: ["mongooes"],
