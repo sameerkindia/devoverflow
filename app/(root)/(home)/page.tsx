@@ -63,7 +63,7 @@ import { getQuestion } from "@/lib/actions/question.action";
 const Home = async () => {
   const result = await getQuestion({});
 
-  console.log(result.questions);
+  // console.log(result.questions);
   // console.log(result.questions?.answers);
 
   return (
