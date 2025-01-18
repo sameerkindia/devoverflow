@@ -9,6 +9,7 @@ import {
 } from "./shared.types";
 import { revalidatePath } from "next/cache";
 import Question from "@/database/question.model";
+import { signIn, signOut } from "@/auth";
 
 export async function getUserById(params: any) {
   try {
@@ -26,7 +27,10 @@ export async function getUserById(params: any) {
   }
 }
 
-export async function createUser(userData: CreateUserParams) {
+
+// CreateUserParams
+export async function createUser(userData: any ) {
+  console.log(userData)
   try {
     connectToDatabase();
     const newUser = await User.create(userData);
@@ -82,4 +86,13 @@ export async function deleteUser(params: DeleteUserParams) {
     console.log(error);
     throw error;
   }
+}
+
+
+export async function signInAction() {
+  await signIn("google", { redirectTo: "/ask-question" });
+}
+
+export async function signOutAction() {
+  await signOut({ redirectTo: "/" });
 }

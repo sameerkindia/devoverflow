@@ -23,13 +23,6 @@ export const metadata: Metadata = {
   },
 };
 
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeProvider";
 export default function RootLayout({
@@ -40,28 +33,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
-        <ClerkProvider
-          appearance={{
-            elements: {
-              formButtonPrimary: "primary-gradient",
-              footerActionLink: "primary-text-gradient hover:text-primary-500",
-            },
-          }}
-          signInFallbackRedirectUrl="/"
-          signUpFallbackRedirectUrl="/"
-        >
           <ThemeProvider>{children}</ThemeProvider>
-        </ClerkProvider>
       </body>
     </html>
   );
 }
 
-{
-  /* <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn> */
-}
