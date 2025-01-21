@@ -9,6 +9,7 @@ import NoResult from "@/components/shared/NoResult";
 import QuestionCard from "@/components/cards/QuestionCard";
 import { getQuestion } from "@/lib/actions/question.action";
 import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 // const questions = [
 //   {
@@ -66,7 +67,11 @@ const Home = async () => {
 
   const session = await auth()
 
-  console.log(session , "this is session")
+  if (session && !session?.user?.username) {
+    redirect('/update-info');
+  }
+
+  // console.log(session , "this is session from home page")
 
   // console.log(result.questions);
   // console.log(result.questions?.answers);
