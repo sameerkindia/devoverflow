@@ -8,6 +8,8 @@ import HomeFilters from "@/components/home/HomeFilters";
 import NoResult from "@/components/shared/NoResult";
 import QuestionCard from "@/components/cards/QuestionCard";
 import { getQuestion } from "@/lib/actions/question.action";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 // const questions = [
 //   {
@@ -63,6 +65,15 @@ import { getQuestion } from "@/lib/actions/question.action";
 const Home = async () => {
   const result = await getQuestion({});
 
+  const session = await auth()
+
+  // @ts-ignore
+  if (session && !session?.user?.username) {
+    redirect('/update-info');
+  }
+
+  // console.log(session , "this is session from home page")
+
   // console.log(result.questions);
   // console.log(result.questions?.answers);
 
@@ -114,8 +125,8 @@ const Home = async () => {
           <NoResult
             title="There's no question to show"
             description="Be the first to break the silence! 🚀 Ask a Question and kickstart the
-        discussion. our query could be the next big thing others learn from. Get
-        involved! 💡"
+            discussion. our query could be the next big thing others learn from. Get
+            involved! 💡"
             link="/ask-question"
             linkTitle="Ask a Question"
           />

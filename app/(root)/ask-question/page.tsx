@@ -1,23 +1,24 @@
 // "use client";
 
+import { auth } from "@/auth";
 import Question from "@/components/forms/Question";
 import { getUserById } from "@/lib/actions/user.action";
-import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import React from "react";
 
 const page = async () => {
-  // const { userId } = await auth();
 
-  const userId = "64c17f9c345678";
+  const session = await auth()
 
-  // console.log(userId);
+  // @ts-ignore
+  // const userId = "64c17f9c345678";
+  const userId = session?.user.id;
 
-  if (!userId) redirect("/sign-in");
+  if (!session) redirect("/sign-in");
 
   const mongoUser = await getUserById({ userId });
 
-  console.log("mongo user ", mongoUser);
+  console.log(mongoUser , " this is user from ask question")
 
   if (!mongoUser) {
     return (

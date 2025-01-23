@@ -32,6 +32,7 @@ interface Props {
 }
 
 const Question = ({ mongoUserId }: Props) => {
+  console.log(mongoUserId , "this is mongoUser id from form")
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
