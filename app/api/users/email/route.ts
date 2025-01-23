@@ -24,7 +24,7 @@ export async function GET(req:any , res:any) {
   
 }
 
-export async function POST(request) {
+export async function POST(request  : any) {
   try {
     await connectToDatabase();
 

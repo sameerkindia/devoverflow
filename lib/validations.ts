@@ -60,6 +60,24 @@ export const SignUpSchema = z.object({
     }),
 });
 
+export const UpdateUserSchema = z.object({
+  username: z
+    .string()
+    .min(3, { message: "Username must be at least 3 characters long." })
+    .max(30, { message: "Username cannot exceed 30 characters." })
+    .regex(/^[a-zA-Z0-9_]+$/, {
+      message: "Username can only contain letters, numbers, and underscores.",
+    }),
+
+  name: z
+    .string()
+    .min(1, { message: "Name is required." })
+    .max(50, { message: "Name cannot exceed 50 characters." })
+    .regex(/^[a-zA-Z\s]+$/, {
+      message: "Name can only contain letters and spaces.",
+    }),
+});
+
 export const QuestionsSchema = z.object({
   title: z.string().min(5).max(130),
   explanation: z.string().min(100),
@@ -71,6 +89,14 @@ export const AnswerSchema = z.object({
 });
 
 export const ProfileSchema = z.object({
+  name: z.string().min(5).max(50),
+  username: z.string().min(5).max(50),
+  bio: z.string().min(10).max(150),
+  portfolioWebsite: z.string().url(),
+  location: z.string().min(5).max(50),
+});
+
+export const UpdateProfileSchema = z.object({
   name: z.string().min(5).max(50),
   username: z.string().min(5).max(50),
   bio: z.string().min(10).max(150),

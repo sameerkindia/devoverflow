@@ -51,6 +51,10 @@ export async function createQuestion(params: CreateQuestionParams) {
       $push: { tags: { $each: tagDocuments } },
     });
 
+    await User.findByIdAndUpdate(author, {
+      $push: { saved: [ JSON.parse(question._id)]  },
+    })
+
     revalidatePath(path);
   } catch (error) {}
 }

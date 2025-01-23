@@ -10,11 +10,15 @@ const page = async () => {
 
   const session = await auth()
 
-  const userId = "64c17f9c345678";
+  // @ts-ignore
+  // const userId = "64c17f9c345678";
+  const userId = session?.user.id;
 
   if (!session) redirect("/sign-in");
 
   const mongoUser = await getUserById({ userId });
+
+  console.log(mongoUser , " this is user from ask question")
 
   if (!mongoUser) {
     return (

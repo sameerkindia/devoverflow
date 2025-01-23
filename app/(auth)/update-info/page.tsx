@@ -1,54 +1,21 @@
 "use client";
 
-import { auth } from "@/auth";
 import AuthForm from "@/components/forms/AuthForm";
 import { createUser} from "@/lib/actions/user.action";
-import { SignInSchema, UsernameSchema } from "@/lib/validations";
-import { redirect, useRouter } from "next/navigation";
-// import { useRouter } from "next/router";
+import {UsernameSchema } from "@/lib/validations";
 import React from "react";
 
 const page = () => {
 
-  const route = useRouter()
-
   async function usernameUpdate(data:any){
-    // console.log(data , "this is form data")
-
-    // const session = await auth();
-
-    // console.log(session , "this is from update user")
-
-    // await createUsername( session?.user?.email , data.username);
-
-    // await fetch(`${process.env.NEXTAUTH_URL}/api/user`, {
-    //         method: 'POST',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //           email: session?.user?.email,
-    //           name: session?.user?.name,
-    //           picture: session?.user?.image,
-    //           username: data.username
-    //         }),
-    //       });
-
     await createUser(data);
-
-    // redirect('/');
-
-    // route.push("/")
-
-    // return newUser
-    // return JSON.parse(JSON.stringify(newUser));
   }
 
   return (
     <div>
       <AuthForm
         onSubmit={(data) => Promise.resolve(usernameUpdate(data))}
-        formType="SIGN_IN"
+        formType="CREATE"
         schema={UsernameSchema}
         defaultValues={{ username : '' }}
       />{" "}

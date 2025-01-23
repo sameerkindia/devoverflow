@@ -27,7 +27,7 @@ interface AuthFormProps<T extends FieldValues> {
   schema: ZodType<T>;
   defaultValues: T;
   onSubmit: (data: T) => void;
-  formType: "SIGN_IN" | "SIGN_UP";
+  formType: "CREATE" | "UPDATE";
 }
 
 const AuthForm = <T extends FieldValues>({
@@ -46,7 +46,7 @@ const AuthForm = <T extends FieldValues>({
     // TODO: Authenticate User
   };
 
-  const buttonText = formType === "SIGN_IN" ? "Sign In" : "Sign Up";
+  const buttonText = formType === "CREATE" ? "Create username" : "Update";
 
   return (
     <Form {...form}>
@@ -82,39 +82,40 @@ const AuthForm = <T extends FieldValues>({
 
         <Button
           disabled={form.formState.isSubmitting}
-          className="primary-gradient paragraph-medium min-h-12 w-full rounded-2 px-4 py-3 font-inter !text-light-900"
+          className="primary-gradient paragraph-medium min-h-12 w-full rounded-2 px-4 py-3 font-inter !text-light-900 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {form.formState.isSubmitting
-            ? buttonText === "Sign In"
-              ? "Signin In..."
-              : "Signing Up..."
+            ? buttonText === "Create username"
+              ? "Creating..."
+              : "Updating..."
             : buttonText}
         </Button>
-
-        {formType === "SIGN_IN" ? (
-          <p>
-            Don't have an account?{" "}
-            <Link
-              href={ROUTES.SIGN_UP}
-              className="paragraph-semibold primary-text-gradient"
-            >
-              Sign up
-            </Link>
-          </p>
-        ) : (
-          <p>
-            Already have an account?{" "}
-            <Link
-              href={ROUTES.SIGN_IN}
-              className="paragraph-semibold primary-text-gradient"
-            >
-              Sign in
-            </Link>
-          </p>
-        )}
       </form>
     </Form>
   );
 };
 
 export default AuthForm;
+
+
+// {formType === "SIGN_IN" ? (
+//   <p>
+//     Don't have an account?{" "}
+//     <Link
+//       href={ROUTES.SIGN_UP}
+//       className="paragraph-semibold primary-text-gradient"
+//     >
+//       Sign up
+//     </Link>
+//   </p>
+// ) : (
+//   <p>
+//     Already have an account?{" "}
+//     <Link
+//       href={ROUTES.SIGN_IN}
+//       className="paragraph-semibold primary-text-gradient"
+//     >
+//       Sign in
+//     </Link>
+//   </p>
+// )}

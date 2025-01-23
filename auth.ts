@@ -10,11 +10,11 @@ const authConfig = {
     }),
   ],
   callbacks : {
-    async authorized({auth, request}) {
+    async authorized({auth, request} : any) {
       return !!auth?.user;
 
     },
-    async session({ session, user }){
+    async session({ session, user } : any){
       const response = await fetch(`${process.env.NEXTAUTH_URL}/api/users/email?email=${session.user.email}`)
 
       const data = await response.json()
@@ -22,7 +22,7 @@ const authConfig = {
       session.user.id = data._id;
       session.user.username = data.username
 
-      console.log(session , "this session Data is from session")
+      // console.log(session , "this session Data is from session")
       
       return session;
     },

@@ -67,6 +67,7 @@ const Home = async () => {
 
   const session = await auth()
 
+  // @ts-ignore
   if (session && !session?.user?.username) {
     redirect('/update-info');
   }

@@ -18,7 +18,7 @@ export async function getUserById(params: any) {
 
     const { userId } = params;
 
-    const user = await User.findOne({ clerkId: userId });
+    const user = await User.findOne({ _id : userId });
 
     return user;
   } catch (error) {
@@ -57,7 +57,7 @@ export async function createUser(userData: any) {
 //     const session = await auth()
 //     // console.log(session?.user , "from server action")
 
-//     // await User.findOneAndUpdate({ clerkId }, updateData, { new: true });
+//     // await User.findOneAndUpdate({ userId }, updateData, { new: true });
 //     const user = await User.findOneAndUpdate({email : email}, {username : username} , {new : true})
 
 //     // revalidatePath(path);
@@ -72,9 +72,9 @@ export async function updateUser(params: UpdateUserParams) {
   try {
     connectToDatabase();
 
-    const { clerkId, updateData, path } = params;
+    const { userId, updateData, path } = params;
 
-    await User.findOneAndUpdate({ clerkId }, updateData, { new: true });
+    await User.findOneAndUpdate({ userId }, updateData, { new: true });
 
     revalidatePath(path);
   } catch (error) {
@@ -87,9 +87,9 @@ export async function deleteUser(params: DeleteUserParams) {
   try {
     connectToDatabase();
 
-    const clerkId = params;
+    const userId = params;
 
-    const user = await User.findOneAndDelete({ clerkId });
+    const user = await User.findOneAndDelete({ userId });
 
     if (!user) {
       throw new Error("User not found");
