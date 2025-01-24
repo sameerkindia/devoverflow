@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import RanderTags from "../RanderTags";
+import RenderTags from "../RenderTags";
 
 const hotQuestions = [
   {
@@ -65,7 +65,7 @@ const RightSideBar = () => {
         <h3 className="h3-bold text-dark200_light900">Popular Tags</h3>
         <div className="mt-7 flex flex-col gap-4">
           {popularTags.map((tag) => (
-            <RanderTags
+            <RenderTags
               key={tag._id}
               _id={tag._id}
               name={tag.name}
