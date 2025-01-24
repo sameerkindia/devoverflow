@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import RanderTags from "./RanderTags";
+import RenderTags from "./RenderTags";
 
 interface Props {
   filters: {
@@ -43,7 +43,7 @@ const Filter = ({ filters, otherClasses, containerClasses }: Props) => {
 
       <div className="">
         {/* {filters.map((tag) => (
-          <RanderTags key={tag.value} name={tag.name} />
+          <RenderTags key={tag.value} name={tag.name} />
         ))} */}
       </div>
     </div>

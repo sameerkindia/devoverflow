@@ -72,11 +72,6 @@ const Home = async () => {
     redirect('/update-info');
   }
 
-  // console.log(session , "this is session from home page")
-
-  // console.log(result.questions);
-  // console.log(result.questions?.answers);
-
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">

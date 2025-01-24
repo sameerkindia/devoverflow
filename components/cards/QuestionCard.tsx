@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import RanderTags from "../shared/RanderTags";
+import RenderTags from "../shared/RenderTags";
 import Metric from "../shared/Metric";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
 
@@ -50,7 +50,7 @@ const QuestionCard = ({
 
       <div className="mt-3.5 flex flex-wrap gap-2">
         {tags.map((tag) => (
-          <RanderTags key={tag._id} name={tag.name} _id={tag._id} />
+          <RenderTags key={tag._id} name={tag.name} _id={tag._id} />
         ))}
       </div>
 
