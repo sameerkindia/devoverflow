@@ -10,7 +10,7 @@ import React from "react";
 
 // interface Params
 
-const page = async ({ params, searchParams }) => {
+const page = async ({ params, searchParams }:any) => {
   const result = await getQuestionById({ questionId: params.id });
 
   // console.log(result)
@@ -78,7 +78,7 @@ const page = async ({ params, searchParams }) => {
         ))}
       </div>
 
-      <Answer />
+      {/* <Answer /> */}
     </>
   );
 };
