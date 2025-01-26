@@ -1,4 +1,6 @@
+import { auth } from "@/auth";
 import Answer from "@/components/forms/Answer";
+import AllAnswers from "@/components/shared/AllAnswers";
 import Metric from "@/components/shared/Metric";
 import ParseHTML from "@/components/shared/ParseHTML";
 import RenderTags from "@/components/shared/RenderTags";
@@ -11,9 +13,13 @@ import React from "react";
 // interface Params
 
 const page = async ({ params, searchParams }:any) => {
-  const result = await getQuestionById({ questionId: params.id });
+  const session = await auth();
 
-  // console.log(result)
+  let mongoUser;
+
+  if(session) mongoUser = session?.user.id;
+
+  const result = await getQuestionById({ questionId: params.id });
 
   return (
     <>
@@ -78,7 +84,19 @@ const page = async ({ params, searchParams }:any) => {
         ))}
       </div>
 
-      {/* <Answer /> */}
+      <AllAnswers 
+        questionId={result._id}
+        userId={mongoUser}
+        totalAnswers={result.answers.length}
+        page={searchParams?.page}
+        filter={searchParams?.filter}
+      />
+
+      <Answer 
+        question={result.content}
+        questionId={JSON.stringify(result._id)}
+        authorId={JSON.stringify(mongoUser)}
+      />
     </>
   );
 };
