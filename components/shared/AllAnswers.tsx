@@ -11,7 +11,7 @@ import ParseHTML from './ParseHTML';
 
 interface Props {
   questionId: string;
-  userId: string;
+  userId: any;
   totalAnswers: number;
   page?: number;
   filter?: string;
