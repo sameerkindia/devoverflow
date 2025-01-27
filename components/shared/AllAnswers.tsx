@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getTimestamp } from '@/lib/utils';
 import ParseHTML from './ParseHTML';
-// import Votes from './Votes';
+import Votes from './Votes';
 // import Pagination from './Pagination';
 
 interface Props {
@@ -25,7 +25,7 @@ const AllAnswers = async ({ questionId, userId, totalAnswers, page, filter }: Pr
   })
 
   return (
-    <div className="mt-11">
+    <div className="mt-11 mb-4">
       <div className='flex items-center justify-between'>
         <h3 className='primary-text-gradient'>{totalAnswers} Answers</h3>
 
@@ -56,7 +56,7 @@ const AllAnswers = async ({ questionId, userId, totalAnswers, page, filter }: Pr
                   </div>
                 </Link>
                 <div className="flex justify-end">
-                  {/* <Votes 
+                  <Votes 
                     type="Answer"
                     itemId={JSON.stringify(answer._id)}
                     userId={JSON.stringify(userId)}
@@ -64,7 +64,7 @@ const AllAnswers = async ({ questionId, userId, totalAnswers, page, filter }: Pr
                     hasupVoted={answer.upvotes.includes(userId)}
                     downvotes={answer.downvotes.length}
                     hasdownVoted={answer.downvotes.includes(userId)}
-                  /> */}
+                  />
                 </div>
 
             </div>
