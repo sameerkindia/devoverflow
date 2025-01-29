@@ -1,20 +1,28 @@
+import { auth } from "@/auth";
 import QuestionCard from "@/components/cards/QuestionCard";
 import Filter from "@/components/shared/Filter";
 import NoResult from "@/components/shared/NoResult";
-import Pagination from "@/components/shared/Pagination";
-import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
+// @ts-ignore
+import LocalSearchBar from "@/components/shared/search/LocalSearchbar";
+// import Pagination from "@/components/shared/Pagination";
+// import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { QuestionFilters } from "@/constants/filters";
 import { getSavedQuestions } from "@/lib/actions/user.action";
 import { SearchParamsProps } from "@/types";
-import { auth } from '@clerk/nextjs'
+// import { auth } from '@clerk/nextjs'
 
 export default async function Home({ searchParams }: SearchParamsProps) {
-  const { userId } = auth();
+  // const { userId } = auth();
+
+  const session = await auth();
+
+  // @ts-ignore
+  let userId = session?.user?.id;
 
   if(!userId) return null;
 
   const result = await getSavedQuestions({
-    clerkId: userId,
+    userId: userId,
     searchQuery: searchParams.q,
     filter: searchParams.filter,
     page: searchParams.page ? +searchParams.page : 1,
@@ -25,12 +33,12 @@ export default async function Home({ searchParams }: SearchParamsProps) {
       <h1 className="h1-bold text-dark100_light900">Saved Questions</h1> 
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
-        <LocalSearchbar 
+        <LocalSearchBar 
           route="/"
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
           placeholder="Search for questions"
-          otherClasses="flex-1"
+          otherClass="flex-1"
         />
 
         <Filter
@@ -62,12 +70,12 @@ export default async function Home({ searchParams }: SearchParamsProps) {
           />}
       </div>
 
-      <div className="mt-10">
+      {/* <div className="mt-10">
         <Pagination 
           pageNumber={searchParams?.page ? +searchParams.page : 1}
           isNext={result.isNext}
         />
-      </div>
+      </div> */}
     </>
   )
 }
