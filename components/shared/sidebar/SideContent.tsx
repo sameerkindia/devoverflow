@@ -1,14 +1,29 @@
 "use client"
 
+import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { sidebarLinks } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 
 
-const SideContent = () => {
+
+const SideContent = ({userId}:any) => {
+
+  
+
+  // useEffect(() =>{
+  //   async function getUserId(){
+  //     const session = await auth();
+  //     userId = session?.user?.id;
+  //   }
+
+  //   getUserId()
+  // } ,[])
+
 
   const pathName = usePathname();
 
@@ -18,6 +33,14 @@ const SideContent = () => {
         const isActive =
           (pathName.includes(item.route) && item.route.length > 1) ||
           pathName === item.route;
+
+          if(item.route === '/profile'){
+            if(userId){
+              item.route = `${item.route}/${userId}`
+            }else{
+              return null
+            }
+          }
         return (
           <Link
             key={item.route}
