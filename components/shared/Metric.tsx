@@ -9,7 +9,7 @@ interface MetricProps {
   title: string;
   href?: string;
   textStyle?: string;
-  isAuther?: boolean;
+  isAuthor?: boolean;
 }
 
 const Metric = ({
@@ -19,7 +19,7 @@ const Metric = ({
   title,
   href,
   textStyle,
-  isAuther,
+  isAuthor,
 }: MetricProps) => {
   const matricContent = (
     <>
@@ -35,7 +35,7 @@ const Metric = ({
         {value}
         <span
           className={`small-regular line-clamp-1 ${
-            isAuther ? "max-sm:hidden" : ""
+            isAuthor ? "max-sm:hidden" : ""
           }`}
         >
           {title}

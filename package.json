@@ -28,6 +28,8 @@
     "next": "^14.2.23",
     "next-auth": "^5.0.0-beta.25",
     "prismjs": "^1.29.0",
+    "query-string": "^9.1.1",
+    "radix-ui": "^1.1.2",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.1",

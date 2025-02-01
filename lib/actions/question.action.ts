@@ -22,16 +22,54 @@ export async function getQuestion(params: GetQuestionsParams) {
   }
 }
 
+// export async function createQuestion(params: CreateQuestionParams) {
+//   try {
+//     connectToDatabase();
+
+//     const { title, content, tags, author, path } = params;
+
+//     const question = await Question.create({
+//       title,
+//       content,
+//       author,
+//     });
+
+//     const tagDocuments = [];
+
+//     // Create the tags or get them if they already exist
+//     for (const tag of tags) {
+//       const existingTag = await Tag.findOneAndUpdate(
+//         { name: { $regex: new RegExp(`^${tag}$`, "i") } },
+//         { $setOnInsert: { name: tag }, $push: { questions: question._id } },
+//         { upsert: true, new: true }
+//       );
+
+//       tagDocuments.push(existingTag._id);
+//     }
+
+//     await Question.findByIdAndUpdate(question._id, {
+//       $push: { tags: { $each: tagDocuments } },
+//     });
+
+//     await User.findByIdAndUpdate(author, {
+//       $push: { saved: [ JSON.parse(question._id)]  },
+//     })
+
+//     revalidatePath(path);
+//   } catch (error) {}
+// }
+
 export async function createQuestion(params: CreateQuestionParams) {
   try {
     connectToDatabase();
 
     const { title, content, tags, author, path } = params;
 
+    // Create the question
     const question = await Question.create({
       title,
       content,
-      author,
+      author
     });
 
     const tagDocuments = [];
@@ -39,25 +77,35 @@ export async function createQuestion(params: CreateQuestionParams) {
     // Create the tags or get them if they already exist
     for (const tag of tags) {
       const existingTag = await Tag.findOneAndUpdate(
-        { name: { $regex: new RegExp(`^${tag}$`, "i") } },
-        { $setOnInsert: { name: tag }, $push: { question: question._id } },
+        { name: { $regex: new RegExp(`^${tag}$`, "i") } }, 
+        { $setOnInsert: { name: tag }, $push: { questions: question._id } },
         { upsert: true, new: true }
-      );
+      )
 
       tagDocuments.push(existingTag._id);
     }
 
     await Question.findByIdAndUpdate(question._id, {
-      $push: { tags: { $each: tagDocuments } },
+      $push: { tags: { $each: tagDocuments }}
     });
 
-    await User.findByIdAndUpdate(author, {
-      $push: { saved: [ JSON.parse(question._id)]  },
-    })
+    // Create an interaction record for the user's ask_question action
+    // await Interaction.create({
+    //   user: author,
+    //   action: "ask_question",
+    //   question: question._id,
+    //   tags: tagDocuments,
+    // })
 
-    revalidatePath(path);
-  } catch (error) {}
+    // Increment author's reputation by +5 for creating a question
+    // await User.findByIdAndUpdate(author, { $inc: { reputation: 5 }})
+
+    revalidatePath(path)
+  } catch (error) {
+    console.log(error);
+  }
 }
+
 
 export async function getQuestionById(params: GetQuestionByIdParams){
   try {
