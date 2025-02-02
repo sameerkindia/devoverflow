@@ -84,7 +84,9 @@ export async function updateUser(params: UpdateUserParams) {
 
     const { userId, updateData, path } = params;
 
-    await User.findOneAndUpdate({ userId }, updateData, { new: true });
+    const updatedUser = await User.findOneAndUpdate({ _id : userId }, updateData, { new: true });
+
+    // console.log(updatedUser , "this is updated user")
 
     revalidatePath(path);
   } catch (error) {
@@ -249,7 +251,7 @@ export async function getUserInfo(params: GetUserByIdParams) {
 
     const { userId } = params;
 
-    const user = await User.findOne({ clerkId: userId });
+    const user = await User.findOne({ _id: userId });
 
     if(!user) {
       throw new Error('User not found');
@@ -326,7 +328,7 @@ export async function getUserQuestions(params: GetUserStatsParams) {
       .skip(skipAmount)
       .limit(pageSize)
       .populate('tags', '_id name')
-      .populate('author', '_id clerkId name picture')
+      .populate('author', '_id name picture')
 
       const isNextQuestions = totalQuestions > skipAmount + userQuestions.length;
 
@@ -352,7 +354,7 @@ export async function getUserAnswers(params: GetUserStatsParams) {
       .skip(skipAmount)
       .limit(pageSize)
       .populate('question', '_id title')
-      .populate('author', '_id clerkId name picture')
+      .populate('author', '_id name picture')
 
       const isNextAnswer = totalAnswers > skipAmount + userAnswers.length;
       

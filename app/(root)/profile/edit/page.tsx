@@ -1,10 +1,14 @@
+import { auth } from '@/auth';
 import Profile from '@/components/forms/Profile';
 import { getUserById } from '@/lib/actions/user.action';
 import { ParamsProps } from '@/types';
-import { auth } from '@clerk/nextjs'
+// import { auth } from '@clerk/nextjs'
 
 const Page = async ({ params }: ParamsProps) => {
-  const { userId } = auth();
+  const session = await auth();
+
+  // @ts-ignore
+  const userId = session?.user.id
 
   if(!userId) return null;
 
@@ -16,7 +20,7 @@ const Page = async ({ params }: ParamsProps) => {
       
       <div className="mt-9">
         <Profile 
-          clerkId={userId}
+          userId={userId}
           user={JSON.stringify(mongoUser)}
         />
       </div>
