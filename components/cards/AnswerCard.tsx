@@ -2,7 +2,9 @@ import Link from "next/link";
 
 import Metric from "../shared/Metric";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
-import { SignedIn } from "@clerk/nextjs";
+// import { SignedIn } from "@clerk/nextjs";
+// import EditDeleteAction from "../shared/EditDeleteAction";
+import { auth } from "@/auth";
 import EditDeleteAction from "../shared/EditDeleteAction";
 
 interface Props {
@@ -13,7 +15,6 @@ interface Props {
   };
   author: {
     _id: string;
-    clerkId: string;
     name: string;
     picture: string;
   };
@@ -21,14 +22,20 @@ interface Props {
   createdAt: Date;
 }
 
-const AnswerCard = ({
+const AnswerCard = async ({
   _id,
   question,
   author,
   upvotes,
   createdAt,
 }: Props) => {
-  const showActionButtons = clerkId && clerkId === author.clerkId;
+
+  const session = await auth();
+  // @ts-ignore
+  const userId = session?.user.id
+  const showActionButtons = userId && userId === author._id;
+
+  console.log(showActionButtons , "this was shoe action btn")
 
   return (
     <Link
@@ -45,11 +52,18 @@ const AnswerCard = ({
           </h3>
         </div>
 
-        <SignedIn>
+        {/* <SignedIn>
           {showActionButtons && (
             <EditDeleteAction type="Answer" itemId={JSON.stringify(_id)} />
           )}
-        </SignedIn>
+        </SignedIn> */}
+
+          {showActionButtons && (
+            <EditDeleteAction type="Answer" itemId={JSON.stringify(_id)} />
+          )}
+
+          <EditDeleteAction type="Answer" itemId={JSON.stringify(_id)} />
+
       </div>
 
       <div className="flex-between mt-6 w-full flex-wrap gap-3">
@@ -58,7 +72,7 @@ const AnswerCard = ({
           alt="user avatar"
           value={author.name}
           title={` • asked ${getTimestamp(createdAt)}`}
-          href={`/profile/${author.clerkId}`}
+          href={`/profile/${author._id}`}
           textStyle="body-medium text-dark400_light700"
           isAuthor
         />
