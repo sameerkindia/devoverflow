@@ -3,6 +3,8 @@ import React from "react";
 import RenderTags from "../shared/RenderTags";
 import Metric from "../shared/Metric";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
+import EditDeleteAction from "../shared/EditDeleteAction";
+import { auth } from "@/auth";
 
 interface Props {
   _id: string;
@@ -18,7 +20,7 @@ interface Props {
   createdAt: Date;
 }
 
-const QuestionCard = ({
+const QuestionCard = async ({
   _id,
   title,
   tags,
@@ -28,8 +30,13 @@ const QuestionCard = ({
   answers,
   createdAt,
 }: Props) => {
-  // console.log(createdAt);
-  // console.log(answers);
+
+  const session = await auth()
+
+  // @ts-ignore
+  const userId = session?.user?.id
+  // @ts-ignore
+  const showActionButtons = userId && JSON.stringify(userId) === JSON.stringify(author[0]._id);
 
   return (
     <div className="card-wrapper p-9 sm:px-11 rounded-[10px]">
@@ -46,6 +53,9 @@ const QuestionCard = ({
           </Link>
         </div>
         {/* If signed in */}
+        {showActionButtons && (
+            <EditDeleteAction type="Question" itemId={JSON.stringify(_id)} />
+        )}
       </div>
 
       <div className="mt-3.5 flex flex-wrap gap-2">

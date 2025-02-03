@@ -33,9 +33,10 @@ const AnswerCard = async ({
   const session = await auth();
   // @ts-ignore
   const userId = session?.user.id
-  const showActionButtons = userId && userId === author._id;
+  const showActionButtons = userId && JSON.stringify(userId) === JSON.stringify(author._id);
 
-  console.log(showActionButtons , "this was shoe action btn")
+  // console.log(userId , author._id , "this was shoe action btn")
+  // console.log(showActionButtons , "this was shoe action btn")
 
   return (
     <Link
@@ -51,19 +52,10 @@ const AnswerCard = async ({
             {question.title}
           </h3>
         </div>
-
-        {/* <SignedIn>
+        
           {showActionButtons && (
             <EditDeleteAction type="Answer" itemId={JSON.stringify(_id)} />
           )}
-        </SignedIn> */}
-
-          {showActionButtons && (
-            <EditDeleteAction type="Answer" itemId={JSON.stringify(_id)} />
-          )}
-
-          <EditDeleteAction type="Answer" itemId={JSON.stringify(_id)} />
-
       </div>
 
       <div className="flex-between mt-6 w-full flex-wrap gap-3">
