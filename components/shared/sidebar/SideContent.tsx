@@ -1,29 +1,13 @@
 "use client"
 
-import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { sidebarLinks } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
-
-
 
 
 const SideContent = ({userId}:any) => {
-
-  
-
-  // useEffect(() =>{
-  //   async function getUserId(){
-  //     const session = await auth();
-  //     userId = session?.user?.id;
-  //   }
-
-  //   getUserId()
-  // } ,[])
-
 
   const pathName = usePathname();
 
