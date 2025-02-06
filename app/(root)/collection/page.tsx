@@ -38,7 +38,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
           placeholder="Search for questions"
-          otherClass="flex-1"
+          otherClasses="flex-1"
         />
 
         <Filter

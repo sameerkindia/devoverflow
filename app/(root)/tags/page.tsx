@@ -1,8 +1,7 @@
 import Filter from '@/components/shared/Filter'
 import NoResult from '@/components/shared/NoResult'
+import Pagination from '@/components/shared/Pagination'
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar'
-// import Pagination from '@/components/shared/Pagination'
-// import LocalSearchbar from '@/components/shared/search/LocalSearchbar'
 import { TagFilters } from '@/constants/filters'
 import { getAllTags } from '@/lib/actions/tag.action'
 // import { getAllTags } from '@/lib/actions/tag.actions'
@@ -26,7 +25,7 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
             iconPosition="left"
             imgSrc="/assets/icons/search.svg"
             placeholder="Search for tags"
-            otherClass="flex-1"
+            otherClasses="flex-1"
           />
 
           <Filter
@@ -62,12 +61,12 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
         )}
       </section>
 
-      {/* <div className="mt-10">
+      <div className="mt-10">
         <Pagination 
           pageNumber={searchParams?.page ? +searchParams.page : 1}
           isNext={result.isNext}
         />
-      </div> */}
+      </div>
     </>
   )
 }
