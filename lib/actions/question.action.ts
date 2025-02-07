@@ -16,6 +16,8 @@ export async function getQuestion(params: GetQuestionsParams) {
 
     const { searchQuery, filter, page = 1, pageSize = 10 } = params;
 
+    // console.log(filter , "this is filter")
+
     // Calculcate the number of posts to skip based on the page number and page size
     const skipAmount = (page - 1) * pageSize;
 
