@@ -26,6 +26,8 @@ const Home = async ({searchParams}: SearchParamsProps) => {
     redirect('/update-info');
   }
 
+  console.log("this is jjus")
+
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
