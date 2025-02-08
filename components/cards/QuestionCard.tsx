@@ -13,7 +13,7 @@ interface Props {
     _id: string;
     name: string;
   }[];
-  author: { _id: string; name: string; picture?: string };
+  author: [{ _id: string; name: string; picture?: string }];
   upvotes: string[];
   views: number;
   answers: Array<Object>;
@@ -68,9 +68,9 @@ const QuestionCard = async ({
         <Metric
           imgUrl="/assets/icons/avatar.svg"
           alt="user"
-          value={author.name}
+          value={author[0].name}
           title={` - asked ${getTimestamp(createdAt)}`}
-          href={`/profiles/${author._id}`}
+          href={`/profile/${author[0]._id}`}
           isAuthor
           textStyle="body-medium text-dark400_light700"
         />

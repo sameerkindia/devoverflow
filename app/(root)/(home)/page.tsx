@@ -16,7 +16,8 @@ import { SearchParamsProps } from "@/types";
 
 const Home = async ({searchParams}: SearchParamsProps) => {
   const result = await getQuestion({
-    searchQuery: searchParams.q
+    searchQuery: searchParams.q,
+    filter: searchParams.filter
   });
 
   const session = await auth()
@@ -25,8 +26,6 @@ const Home = async ({searchParams}: SearchParamsProps) => {
   if (session && !session?.user?.username) {
     redirect('/update-info');
   }
-
-  console.log("this is jjus")
 
   return (
     <>
