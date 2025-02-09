@@ -4,7 +4,6 @@ import Pagination from '@/components/shared/Pagination'
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar'
 import { TagFilters } from '@/constants/filters'
 import { getAllTags } from '@/lib/actions/tag.action'
-// import { getAllTags } from '@/lib/actions/tag.actions'
 import { SearchParamsProps } from '@/types'
 import Link from 'next/link'
 

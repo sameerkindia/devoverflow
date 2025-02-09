@@ -11,13 +11,15 @@ import { getQuestion } from "@/lib/actions/question.action";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { SearchParamsProps } from "@/types";
+import Pagination from "@/components/shared/Pagination";
 
 
 
 const Home = async ({searchParams}: SearchParamsProps) => {
   const result = await getQuestion({
     searchQuery: searchParams.q,
-    filter: searchParams.filter
+    filter: searchParams.filter,
+    page: searchParams.page ? +searchParams.page : 1,
   });
 
   const session = await auth()
@@ -82,6 +84,14 @@ const Home = async ({searchParams}: SearchParamsProps) => {
           />
         )}
       </div>
+
+      <div className="mt-10">
+        <Pagination 
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={result.isNext}
+        />
+      </div>
+
     </>
   );
 };
