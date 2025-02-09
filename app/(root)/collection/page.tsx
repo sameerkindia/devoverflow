@@ -4,12 +4,11 @@ import Filter from "@/components/shared/Filter";
 import NoResult from "@/components/shared/NoResult";
 // @ts-ignore
 import LocalSearchBar from "@/components/shared/search/LocalSearchbar";
-// import Pagination from "@/components/shared/Pagination";
-// import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
+import Pagination from "@/components/shared/Pagination";
 import { QuestionFilters } from "@/constants/filters";
 import { getSavedQuestions } from "@/lib/actions/user.action";
 import { SearchParamsProps } from "@/types";
-// import { auth } from '@clerk/nextjs'
+
 
 export default async function Home({ searchParams }: SearchParamsProps) {
   // const { userId } = auth();
@@ -70,12 +69,12 @@ export default async function Home({ searchParams }: SearchParamsProps) {
           />}
       </div>
 
-      {/* <div className="mt-10">
+      <div className="mt-10">
         <Pagination 
           pageNumber={searchParams?.page ? +searchParams.page : 1}
           isNext={result.isNext}
         />
-      </div> */}
+      </div>
     </>
   )
 }
