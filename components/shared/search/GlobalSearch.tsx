@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Input } from "@/components/ui/input"
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { formUrlQuery, removeKeysFromQuery } from '@/lib/utils'
-// import GlobalResult from './GlobalResult'
+import GlobalResult from './GlobalResult'
 
 const GlobalSearch = () => {
   const router = useRouter();
@@ -88,7 +88,7 @@ const GlobalSearch = () => {
           className="paragraph-regular no-focus placeholder text-dark400_light700 border-none bg-transparent shadow-none outline-none"
         />
       </div>
-      {/* {isOpen && <GlobalResult />} */}
+      {isOpen && <GlobalResult />}
     </div>
   )
 }
