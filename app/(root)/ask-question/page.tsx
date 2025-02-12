@@ -18,7 +18,7 @@ const page = async () => {
 
   const mongoUser = await getUserById({ userId });
 
-  console.log(mongoUser , " this is user from ask question")
+  // console.log(mongoUser , " this is user from ask question")
 
   if (!mongoUser) {
     return (
