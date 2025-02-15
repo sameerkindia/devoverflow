@@ -7,26 +7,48 @@ import { HomePageFilters } from "@/constants/filters";
 import HomeFilters from "@/components/home/HomeFilters";
 import NoResult from "@/components/shared/NoResult";
 import QuestionCard from "@/components/cards/QuestionCard";
-import { getQuestion } from "@/lib/actions/question.action";
+import { getQuestion, getRecommendedQuestions } from "@/lib/actions/question.action";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { SearchParamsProps } from "@/types";
 import Pagination from "@/components/shared/Pagination";
+import Question from "@/database/question.model";
 
 
 
 const Home = async ({searchParams}: SearchParamsProps) => {
-  const result = await getQuestion({
-    searchQuery: searchParams.q,
-    filter: searchParams.filter,
-    page: searchParams.page ? +searchParams.page : 1,
-  });
 
   const session = await auth()
 
   // @ts-ignore
   if (session && !session?.user?.username) {
     redirect('/update-info');
+  }
+
+  let result;
+
+  // @ts-ignore
+  if(searchParams === "recommended"){
+    if(session) {
+      result = await getRecommendedQuestions({
+        userId : session?.user?.id || '',
+        // @ts-ignore
+        searchQuery: searchParams?.q,
+        // @ts-ignore
+        page: searchParams?.page ? +searchParams?.page : 1,
+      })
+    }else{
+      result={
+        questions : [],
+        isNext: false,
+      }
+    }
+  } else{
+    result = await getQuestion({
+      searchQuery: searchParams.q,
+      filter: searchParams.filter,
+      page: searchParams.page ? +searchParams.page : 1,
+    });
   }
 
   return (
