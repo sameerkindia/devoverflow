@@ -28,8 +28,10 @@ const Home = async ({searchParams}: SearchParamsProps) => {
   let result;
 
   // @ts-ignore
-  if(searchParams === "recommended"){
+  if(searchParams.filter === "recommended"){
+    console.log("this is working")
     if(session) {
+      console.log("this is working user")
       result = await getRecommendedQuestions({
         userId : session?.user?.id || '',
         // @ts-ignore
