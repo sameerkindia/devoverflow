@@ -19,6 +19,7 @@ export async function GET(req:any , res:any) {
     
   } catch (error) {
     console.error("API Error:", error);
+    // @ts-ignore
     return NextResponse.json({ error: error?.message }, { status: 500 });
   }
   

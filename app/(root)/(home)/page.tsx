@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import LocalSearchBar from "@/components/shared/search/LocalSearchBar";
+// import LocalSearchBar from "@/components/shared/search/LocalSearchBar";
 import Filter from "@/components/shared/Filter";
 import { HomePageFilters } from "@/constants/filters";
 import HomeFilters from "@/components/home/HomeFilters";
@@ -13,6 +13,9 @@ import { redirect } from "next/navigation";
 import { SearchParamsProps } from "@/types";
 import Pagination from "@/components/shared/Pagination";
 import Question from "@/database/question.model";
+// @ts-ignore
+import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
+// import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 
 
 
@@ -65,7 +68,7 @@ const Home = async ({searchParams}: SearchParamsProps) => {
       </div>
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
-        <LocalSearchBar
+        <LocalSearchbar
           route="/"
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
