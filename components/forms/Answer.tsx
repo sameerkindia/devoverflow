@@ -45,8 +45,8 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 
       form.reset();
 
-      if(editorRef.current) {
-        const editor = editorRef.current as any;
+      if(editorRef?.current) {
+        const editor = editorRef?.current as any;
 
         editor.setContent('');
       }
@@ -74,8 +74,8 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 
       const formattedAnswer = aiAnswer.reply.replace(/\n/g, '<br />');
 
-      if(editorRef.current) {
-        const editor = editorRef.current as any;
+      if(editorRef?.current) {
+        const editor = editorRef?.current as any;
         editor.setContent(formattedAnswer);
       }
 
@@ -129,7 +129,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
                   apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
                   onInit={(evt, editor) => {
                     // @ts-ignore
-                    editorRef.current = editor
+                    editorRef?.current = editor
                   }}
                   onBlur={field.onBlur}
                   onEditorChange={(content) => field.onChange(content)}
