@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form"
 import { Textarea } from "../ui/textarea"
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import { ProfileSchema } from "@/lib/validations"
 import { usePathname, useRouter } from "next/navigation"
 import { updateUser } from "@/lib/actions/user.action"
@@ -59,6 +59,7 @@ const Profile = ({ userId, user }: Props) => {
   }
 
   return (
+    <Suspense>
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-9 flex w-full flex-col gap-9">
         <FormField
@@ -168,6 +169,7 @@ const Profile = ({ userId, user }: Props) => {
         </div>
       </form>
     </Form>
+    </Suspense>
   )
 }
 

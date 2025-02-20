@@ -1,30 +1,29 @@
-"use client"
+"use client";
 
 import { Button } from "@/components/ui/button";
 import { sidebarLinks } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Suspense } from "react";
 
-
-const SideContent = ({userId}:any) => {
-
+const SideContent = ({ userId }: any) => {
   const pathName = usePathname();
 
   return (
-    <>
+    <Suspense>
       {sidebarLinks.map((item) => {
         const isActive =
           (pathName.includes(item.route) && item.route.length > 1) ||
           pathName === item.route;
 
-          if(item.route === '/profile'){
-            if(userId){
-              item.route = `${item.route}/${userId}`
-            }else{
-              return null
-            }
+        if (item.route === "/profile") {
+          if (userId) {
+            item.route = `${item.route}/${userId}`;
+          } else {
+            return null;
           }
+        }
         return (
           <Link
             key={item.route}
@@ -52,7 +51,7 @@ const SideContent = ({userId}:any) => {
           </Link>
         );
       })}{" "}
-    </>
+    </Suspense>
   );
 };
 

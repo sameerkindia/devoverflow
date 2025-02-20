@@ -8,7 +8,7 @@ import { toggleSaveQuestion } from "@/lib/actions/user.action";
 import { formatAndDivideNumber } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 interface Props {
   type: string;
@@ -115,6 +115,7 @@ const Votes = ({
   }, [itemId, userId, pathname, router]);
 
   return (
+    <Suspense>
     <div className="flex gap-5">
       <div className="flex-center gap-2.5">
         <div className="flex-center gap-1.5">
@@ -172,6 +173,7 @@ const Votes = ({
         />
       )}
     </div>
+    </Suspense>
   )
 }
 

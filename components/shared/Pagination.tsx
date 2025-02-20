@@ -3,6 +3,7 @@
 import { formUrlQuery } from '@/lib/utils';
 import { Button } from '../ui/button'
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 interface Props {
   pageNumber: number;
@@ -30,6 +31,7 @@ const Pagination = ({ pageNumber, isNext }: Props) => {
   if(!isNext && pageNumber === 1) return null;
 
   return (
+    <Suspense>
     <div className="flex w-full items-center justify-center gap-2">
       <Button
         disabled={pageNumber === 1}
@@ -50,6 +52,7 @@ const Pagination = ({ pageNumber, isNext }: Props) => {
         <p className="body-medium text-dark200_light800">Next</p>
       </Button>
     </div>
+    </Suspense>
   )
 }
 

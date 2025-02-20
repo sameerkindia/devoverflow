@@ -3,7 +3,7 @@
 import AuthForm from "@/components/forms/AuthForm";
 import { createUser} from "@/lib/actions/user.action";
 import {UsernameSchema } from "@/lib/validations";
-import React from "react";
+import React, { Suspense } from "react";
 
 const page = () => {
 
@@ -12,6 +12,7 @@ const page = () => {
   }
 
   return (
+    <Suspense>
     <div>
       <AuthForm
         onSubmit={(data) => Promise.resolve(usernameUpdate(data))}
@@ -50,6 +51,7 @@ const page = () => {
         </button>
       </form> */}
     </div>
+    </Suspense>
   );
 };
 

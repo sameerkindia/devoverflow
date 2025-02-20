@@ -6,7 +6,7 @@ import { AnswerSchema } from '@/lib/validations'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Editor } from '@tinymce/tinymce-react'
-import { useRef, useState } from 'react'
+import { Suspense, useRef, useState } from 'react'
 import { useTheme } from '@/context/ThemeProvider'
 import { Button } from '../ui/button'
 import Image from 'next/image'
@@ -88,6 +88,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
   }
 
   return (
+    <Suspense>
     <div>
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
         <h4 className="paragraph-semibold text-dark400_light800">Write your answer here</h4>
@@ -168,6 +169,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
         </form>
       </Form>
     </div>
+    </Suspense>
   )
 }
 

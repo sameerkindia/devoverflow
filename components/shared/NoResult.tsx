@@ -1,6 +1,8 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 import { Button } from "../ui/button";
 
 interface Props {
@@ -12,6 +14,7 @@ interface Props {
 
 const NoResult = ({ title, description, link, linkTitle }: Props) => {
   return (
+    <Suspense>
     <div className="mt-10 flex w-full flex-col items-center justify-center">
       <Image
         src="/assets/images/light-illustration.png"
@@ -39,6 +42,7 @@ const NoResult = ({ title, description, link, linkTitle }: Props) => {
         </Button>
       </Link>
     </div>
+    </Suspense> 
   );
 };
 

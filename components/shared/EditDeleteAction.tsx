@@ -4,6 +4,7 @@ import { deleteAnswer } from "@/lib/actions/answer.action";
 import { deleteQuestion } from "@/lib/actions/question.action";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { Suspense } from "react";
 
 interface Props {
   type: string;
@@ -35,6 +36,7 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
   };
 
   return (
+    <Suspense>
     <div className="flex items-center justify-end gap-3 max-sm:w-full">
       {type === 'Question' && (
         <Image 
@@ -56,6 +58,7 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
           onClick={handleDelete}
         />
     </div>
+    </Suspense>
   )
 }
 

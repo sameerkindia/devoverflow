@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import ROUTES from "@/constants/routes";
+import { Suspense } from "react";
 
 interface AuthFormProps<T extends FieldValues> {
   schema: ZodType<T>;
@@ -49,6 +50,7 @@ const AuthForm = <T extends FieldValues>({
   const buttonText = formType === "CREATE" ? "Create username" : "Update";
 
   return (
+    <Suspense>
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
@@ -92,6 +94,7 @@ const AuthForm = <T extends FieldValues>({
         </Button>
       </form>
     </Form>
+    </Suspense>
   );
 };
 
