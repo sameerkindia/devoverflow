@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/select"
 import { formUrlQuery } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 interface Props {
   filters: {
@@ -37,6 +38,7 @@ const Filter = ({ filters, otherClasses, containerClasses }: Props) => {
   }
 
   return (
+    <Suspense>
     <div className={`relative ${containerClasses}`}>
       <Select
         onValueChange={handleUpdateParams}
@@ -58,6 +60,7 @@ const Filter = ({ filters, otherClasses, containerClasses }: Props) => {
         </SelectContent>
       </Select>
     </div>
+    </Suspense>
   )
 }
 

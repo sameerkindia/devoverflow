@@ -5,7 +5,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useRef, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
 import { Button } from "@/components/ui/button";
@@ -169,6 +169,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
   // }
 
   return (
+    <Suspense>
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
@@ -320,6 +321,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
         </Button>
       </form>
     </Form>
+    </Suspense>
   );
 };
 

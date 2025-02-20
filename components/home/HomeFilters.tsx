@@ -1,7 +1,7 @@
 "use client"
 
 import { HomePageFilters } from '@/constants/filters'
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import { Button } from '../ui/button'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { formUrlQuery } from '@/lib/utils'
@@ -37,6 +37,7 @@ const HomeFilters = () => {
       }
 
   return (
+    <Suspense>
     <div className="mt-10 hidden flex-wrap gap-3 md:flex">
       {HomePageFilters.map((item) => (
         <Button key={item.value} onClick={() => {}}
@@ -50,6 +51,7 @@ const HomeFilters = () => {
         </Button>
       ))}
     </div>
+    </Suspense>
   )
 }
 

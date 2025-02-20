@@ -3,7 +3,7 @@
 import { GlobalSearchFilters } from '@/constants/filters';
 import { formUrlQuery } from '@/lib/utils';
 import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 
 const GlobalFilters = () => {
   const router = useRouter();
@@ -38,6 +38,7 @@ const GlobalFilters = () => {
     }
 
   return (
+    <Suspense>
     <div className="flex items-center gap-5 px-5">
       <p className="text-dark400_light900 body-medium">Type: </p>
       <div className="flex gap-3">
@@ -58,6 +59,7 @@ const GlobalFilters = () => {
         ))}
       </div>
     </div>
+    </Suspense>
   )
 }
 

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect } from 'react'
+import React, { Suspense, useEffect } from 'react'
 
 // @ts-ignore
 import Prism from 'prismjs'
@@ -39,9 +39,11 @@ const ParseHTML = ({ data }: Props) => {
   }, [])
 
   return (
+    <Suspense>
     <div className={'markdown w-full min-w-full'}>
       {parse(data)}
     </div>
+    </Suspense>
   )
 }
 
