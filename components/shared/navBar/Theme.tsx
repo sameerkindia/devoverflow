@@ -1,7 +1,7 @@
 'use client'
 
 import { useTheme } from "@/context/ThemeProvider";
-import React from "react";
+import React, { Suspense } from "react";
 
 import {
   Menubar,
@@ -17,6 +17,7 @@ const Theme = () => {
   const { mode, setMode } = useTheme();
 
   return (
+    <Suspense>
     <Menubar className="relative border-none bg-transparent shadow-none">
       <MenubarMenu>
         <MenubarTrigger className="focus:bg-light-900 data-[state=open]:bg-light-900 dark:focus:bg-dark-200 dark:data-[state=open]:bg-dark-200 cursor-pointer">
@@ -74,6 +75,7 @@ const Theme = () => {
         </MenubarContent>
       </MenubarMenu>
     </Menubar>
+    </Suspense>
   );
 };
 

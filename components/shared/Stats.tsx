@@ -1,6 +1,9 @@
+"use client"
+
 import { formatAndDivideNumber } from "@/lib/utils"
 import { BadgeCounts } from "@/types";
 import Image from "next/image";
+import { Suspense } from "react";
 
 interface StatsCardProps {
   imgUrl: string;
@@ -10,6 +13,7 @@ interface StatsCardProps {
 
 const StatsCard = ({ imgUrl, value, title }: StatsCardProps) => {
   return (
+    <Suspense>
     <div className="light-border background-light900_dark300 flex flex-wrap items-center justify-start gap-4 rounded-md border p-6 shadow-light-300 dark:shadow-dark-200">
       <Image src={imgUrl} alt={title} width={40} height={50} />
       <div>
@@ -19,6 +23,7 @@ const StatsCard = ({ imgUrl, value, title }: StatsCardProps) => {
         <p className="body-medium text-dark400_light700">{title}</p>
       </div>
     </div>
+    </Suspense>
   )
 }
 
@@ -31,6 +36,7 @@ interface Props {
 
 const Stats = ({ totalQuestions, totalAnswers, badges, reputation }: Props) => {
   return (
+    <Suspense>
     <div className="mt-10">
       <h4 className="h3-semibold text-dark200_light900">Stats - {reputation}</h4>
 
@@ -69,6 +75,7 @@ const Stats = ({ totalQuestions, totalAnswers, badges, reputation }: Props) => {
         />
       </div>
     </div>
+    </Suspense>
   )
 }
 

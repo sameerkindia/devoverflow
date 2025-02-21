@@ -1,5 +1,7 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 
 interface ProfileLinkProps {
   imgUrl: string;
@@ -9,6 +11,7 @@ interface ProfileLinkProps {
 
 const ProfileLink = ({ imgUrl, href, title }: ProfileLinkProps) => {
   return (
+    <Suspense>
     <div className="flex-center gap-1">
       <Image src={imgUrl} alt="icon" width={20} height={20} />
 
@@ -22,6 +25,7 @@ const ProfileLink = ({ imgUrl, href, title }: ProfileLinkProps) => {
         </p>
       )}
     </div>
+    </Suspense>
   )
 }
 
