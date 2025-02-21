@@ -2,7 +2,7 @@
 // import { getTopInteractedTags } from "@/lib/actions/tag.action";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 import { Badge } from "../ui/badge";
 import RanderTags from "../shared/RenderTags";
 
@@ -23,6 +23,7 @@ const UserCard = async ({ user }: Props) => {
   // console.log(interactedTags , 'this was interacted tags')
 
   return (
+    <Suspense>
     <Link
       href={`/profile/${user._id}`}
       className="shadow-light100_darkone w-full max-xs:min-w-full xs:w-[260px]"
@@ -77,6 +78,7 @@ const UserCard = async ({ user }: Props) => {
         </div>
       </article>
     </Link>
+    </Suspense>
   );
 };
 

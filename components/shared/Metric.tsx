@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 
 interface MetricProps {
   imgUrl: string;
@@ -22,7 +22,7 @@ const Metric = ({
   isAuthor,
 }: MetricProps) => {
   const matricContent = (
-    <>
+    <Suspense>
       <Image
         src={imgUrl}
         alt={alt}
@@ -41,14 +41,16 @@ const Metric = ({
           {title}
         </span>
       </p>
-    </>
+    </Suspense>
   );
 
   if (href) {
     return (
+      <Suspense>
       <Link href={href} className="flex-center flex-wrap gap-1">
         {matricContent}
       </Link>
+      </Suspense>
     );
   }
 
