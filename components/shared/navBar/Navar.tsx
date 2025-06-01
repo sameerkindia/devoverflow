@@ -9,6 +9,7 @@ import Theme from "./Theme";
 import MobileNav from "./MobileNav";
 import GlobalSearch from "../search/GlobalSearch";
 import SignIn from "./SignIn";
+import { Suspense } from "react";
 
 const Navar = async () => {
   return (
@@ -24,7 +25,9 @@ const Navar = async () => {
           Dev <span className="text-primary-500">Overflow</span>
         </p>
       </Link>
-        <GlobalSearch />
+      <Suspense fallback="">
+      <GlobalSearch />
+      </Suspense>
       <div className="flex-between gap-5">
         <Theme />
         <SignIn />
